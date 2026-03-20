@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 &mt {
   quick-tap-ms = <100>;
@@ -27,8 +28,18 @@
       bindings = <
         &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P
         &mt LCTRL A  &mt LALT S   &mt LGUI D   &mt LSHFT F  &kp G            &kp H        &mt RSHFT J  &mt RGUI K   &mt RALT L   &mt RCTRL SEMI
-&kp ESC &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp BSLH
-                                  &kp TAB      &kp ESC     &kp BSPC        &kp SPACE      &kp RET      &kp BSPC
+&kp ESC &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp APOS
+                                  &kp TAB      &kp ESC      &kp BSPC         &kp SPACE    &kp RET      &mo 1
+      >;
+    };
+
+    bt_layer {
+      label = "BT";
+      bindings = <
+        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4     &trans       &trans       &trans       &trans       &trans
+        &sys_reset    &bootloader   &bt BT_CLR    &out OUT_TOG  &trans             &trans       &trans       &trans       &trans       &trans
+&trans  &trans        &bt BT_PRV    &bt BT_NXT    &trans        &trans             &trans       &trans       &trans       &trans       &trans  &trans
+                                    &trans        &trans        &trans             &trans       &trans       &trans
       >;
     };
   };
