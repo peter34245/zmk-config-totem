@@ -14,17 +14,17 @@
         compatible = "zmk,combos";
 
         asergo {
-            timeout-ms = <200>;
+            timeout-ms = <100>;
             key-positions = <0 1>;
             bindings = <&tog 5>;
-            layers = <0 5>;
+            layers = <0>;
         };
 
         base {
-            timeout-ms = <200>;
+            timeout-ms = <100>;
             bindings = <&tog 0>;
             key-positions = <10 11>;
-            layers = <0 5>;
+            layers = <5>;
         };
     };
 
