@@ -79,10 +79,10 @@
 
         asergo {
             bindings = <
-         &kp Q  &kp W  &kp D   &kp T   &kp F     &kp Y   &kp U   &kp K      &kp L    &kp MINUS
-         &kp A  &kp S  &kp E   &kp R   &kp G     &kp H   &kp N   &kp I      &kp O    &kp P
-&kp ESC  &kp V  &kp X  &kp C   &kp Z   &kp B     &kp J   &kp M   &kp COMMA  &kp DOT  &kp FSLH   &kp SQT
-                       &trans  &trans  &trans    &trans  &trans  &trans
+                                  &kp Q               &kp W           &kp D               &kp T             &kp F                       &kp Y                      &kp U              &kp K                &kp L            &kp MINUS
+                                  &mt LEFT_CONTROL A  &mt LEFT_ALT S  &mt LEFT_COMMAND E  &mt LEFT_SHIFT R  &mt LA(LC(LEFT_SHIFT)) G    &mt RA(RC(RIGHT_SHIFT)) H  &mt RIGHT_SHIFT N  &mt RIGHT_COMMAND I  &mt RIGHT_ALT O  &mt RIGHT_CONTROL P
+&mt LS(LA(LC(LEFT_COMMAND))) ESC  &kp V               &kp X           &kp C               &kp Z             &kp B                       &kp J                      &kp M              &kp COMMA            &kp DOT          &kp FSLH             &mt RS(RA(RC(RIGHT_COMMAND))) SQT
+                                                                      &trans              &trans            &trans                      &trans                     &trans             &trans
             >;
         };
     };
