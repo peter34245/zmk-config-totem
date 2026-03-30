@@ -16,28 +16,39 @@
         asergo {
             timeout-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&tog 5>;
-            layers = <0>;
+            bindings = <&tog 0>;
+            layers = <5>;
         };
 
         base {
             timeout-ms = <100>;
-            bindings = <&tog 0>;
-            key-positions = <10 11>;
-            layers = <5>;
+            bindings = <&tog 5>;
+            key-positions = <1 2>;
+            layers = <0>;
+        };
+    };
+
+    behaviors {
+        gui_space_tab_morph: gui_space_tab_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "GUI_SPACE_TAB_MORPH";
+            bindings = <&kp SPACE>, <&kp TAB>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LGUI)>;
+            keep-mods = <(MOD_LGUI)>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        base_layer {
-            label = "BASE";
+        asergo {
             bindings = <
-                                  &kp Q        &kp W       &kp E               &kp R        &kp T                       &kp Y                      &kp U        &kp I              &kp O       &kp P
-                                  &mt LCTRL A  &mt LALT S  &mt LGUI D          &mt LSHFT F  &mt LA(LC(LEFT_SHIFT)) G    &mt RA(RC(RIGHT_SHIFT)) H  &mt RSHFT J  &mt RGUI K         &mt RALT L  &mt RCTRL SEMI
-&mt LS(LA(LC(LEFT_COMMAND))) ESC  &kp Z        &kp X       &kp C               &kp V        &kp B                       &kp N                      &kp M        &kp COMMA          &kp DOT     &kp FSLH        &mt RS(RA(RC(RIGHT_COMMAND))) SQT
-                                                           &mt LEFT_SHIFT TAB  &lt 1 BSPC   &lt 2 SPACE                 &lt 2 SPACE                &lt 3 RET    &mt RIGHT_ALT ESC
+                                  &kp Q               &kp W           &kp D               &kp T             &kp F                       &kp Y                      &kp U              &kp K                &kp L            &kp MINUS
+                                  &mt LEFT_CONTROL A  &mt LEFT_ALT S  &mt LEFT_COMMAND E  &mt LEFT_SHIFT R  &mt LA(LC(LEFT_SHIFT)) G    &mt RA(RC(RIGHT_SHIFT)) H  &mt RIGHT_SHIFT N  &mt RIGHT_COMMAND I  &mt RIGHT_ALT O  &mt RIGHT_CONTROL P
+&mt LS(LA(LC(LEFT_COMMAND))) ESC  &kp V               &kp X           &kp C               &kp Z             &kp B                       &kp J                      &kp M              &kp COMMA            &kp DOT          &kp FSLH             &mt RS(RA(RC(RIGHT_COMMAND))) SQT
+                                                                      &mt LEFT_SHIFT ESC  &lt 1 BSPC        &lt 2 SPACE                 &lt 2 SPACE                &lt 3 RET          &mt LEFT_ALT TAB
             >;
         };
 
@@ -78,12 +89,13 @@
             >;
         };
 
-        asergo {
+        base_layer {
+            label = "BASE";
             bindings = <
-                                  &kp Q               &kp W           &kp D               &kp T             &kp F                       &kp Y                      &kp U              &kp K                &kp L            &kp MINUS
-                                  &mt LEFT_CONTROL A  &mt LEFT_ALT S  &mt LEFT_COMMAND E  &mt LEFT_SHIFT R  &mt LA(LC(LEFT_SHIFT)) G    &mt RA(RC(RIGHT_SHIFT)) H  &mt RIGHT_SHIFT N  &mt RIGHT_COMMAND I  &mt RIGHT_ALT O  &mt RIGHT_CONTROL P
-&mt LS(LA(LC(LEFT_COMMAND))) ESC  &kp V               &kp X           &kp C               &kp Z             &kp B                       &kp J                      &kp M              &kp COMMA            &kp DOT          &kp FSLH             &mt RS(RA(RC(RIGHT_COMMAND))) SQT
-                                                                      &trans              &trans            &trans                      &trans                     &trans             &trans
+                                  &kp Q        &kp W       &kp E               &kp R        &kp T                       &kp Y                      &kp U        &kp I              &kp O       &kp P
+                                  &mt LCTRL A  &mt LALT S  &mt LGUI D          &mt LSHFT F  &mt LA(LC(LEFT_SHIFT)) G    &mt RA(RC(RIGHT_SHIFT)) H  &mt RSHFT J  &mt RGUI K         &mt RALT L  &mt RCTRL SEMI
+&mt LS(LA(LC(LEFT_COMMAND))) ESC  &kp Z        &kp X       &kp C               &kp V        &kp B                       &kp N                      &kp M        &kp COMMA          &kp DOT     &kp FSLH        &mt RS(RA(RC(RIGHT_COMMAND))) SQT
+                                                           &mt LEFT_SHIFT TAB  &lt 1 BSPC   &lt 2 SPACE                 &lt 2 SPACE                &lt 3 RET    &mt RIGHT_ALT ESC
             >;
         };
     };
