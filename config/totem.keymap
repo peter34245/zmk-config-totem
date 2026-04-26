@@ -15,7 +15,7 @@
 
         asergo {
             timeout-ms = <100>;
-            key-positions = <0 1>;
+            key-positions = <21 25>;
             bindings = <&tog 0>;
             layers = <3>;
         };
@@ -23,7 +23,7 @@
         base {
             timeout-ms = <100>;
             bindings = <&tog 3>;
-            key-positions = <1 2>;
+            key-positions = <21 14>;
             layers = <0>;
         };
 
@@ -139,7 +139,7 @@
 
         nav {
             bindings = <
-        &trans     &trans    &trans    &trans     &trans    &trans  &trans    &trans    &trans  &trans
+        &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &kp N6  &kp N7    &kp N8    &kp N9  &kp N0
         &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &trans    &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT
 &trans  &trans     &trans    &trans    &trans     &trans    &trans  &trans    &trans    &trans  &trans     &kp APOS
                              &trans    &trans     &trans    &trans  &trans    &trans
