@@ -136,6 +136,11 @@
             bindings = <&kp ESC>;
             key-positions = <12 13>;
         };
+
+        browser {
+            bindings = <&kp LS(LA(LC(LG(A))))>;
+            key-positions = <10 21>;
+        };
     };
 
     behaviors {
@@ -164,19 +169,19 @@
 
         nav {
             bindings = <
-        &kp N1     &kp N2    &kp N3    &kp N4     &kp N5                        &kp N6                  &kp N7    &kp N8    &kp N9  &kp N0
-        &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &mt LA(LC(LEFT_SHIFT)) F11    &mt RA(RC(RSHIFT)) F12  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT
-&trans  &kp F1     &kp F2    &kp F3    &kp F4     &kp F5                        &kp F6                  &kp F7    &kp F8    &kp F9  &kp F10    &trans
-                             &trans    &trans     &trans                        &trans                  &trans    &trans
+        &kp N1     &kp N2    &kp N3    &kp N4               &kp N5                        &kp N6                  &kp N7             &kp N8    &kp N9  &kp N0
+        &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT            &mt LA(LC(LEFT_SHIFT)) F11    &mt RA(RC(RSHIFT)) F12  &kp LEFT           &kp DOWN  &kp UP  &kp RIGHT
+&trans  &kp F1     &kp F2    &kp F3    &kp F4               &kp F5                        &kp F6                  &kp F7             &kp F8    &kp F9  &kp F10    &trans
+                             &trans    &mt LEFT_SHIFT BSPC  &trans                        &mt GLOBE GLOBE         &mt RIGHT_ALT TAB  &trans
             >;
         };
 
         sym {
             bindings = <
-        &kp BSLH                &kp LS(AMPS)       &kp LS(STAR)     &kp LS(TILDE)        &kp LBKT                                   &kp RBKT      &kp N7   &kp N8  &kp N9  &kp MINUS
-        &mt LEFT_CONTROL GRAVE  &mt LEFT_ALT EXCL  &mt LEFT_GUI AT  &mt LEFT_SHIFT HASH  &mt LA(LC(LEFT_SHIFT)) LEFT_PARENTHESIS    &kp LS(RPAR)  &kp N1   &kp N2  &kp N3  &kp N0
-&trans  &kp LS(PIPE)            &kp LS(DLLR)       &kp LS(PRCNT)    &kp LS(CARET)        &kp LS(LBRC)                               &kp LS(RBRC)  &kp N4   &kp N5  &kp N6  &kp EQUAL  &trans
-                                                   &trans           &kp BSPC             &kp SPACE                                  &kp RET       &kp TAB  &trans
+        &kp BSLH                        &kp LS(AMPS)       &kp LS(STAR)     &kp LS(TILDE)        &kp LBKT                                   &kp RBKT      &kp N7             &kp N8  &kp N9  &kp MINUS
+        &mt LEFT_CONTROL GRAVE          &mt LEFT_ALT EXCL  &mt LEFT_GUI AT  &mt LEFT_SHIFT HASH  &mt LA(LC(LEFT_SHIFT)) LEFT_PARENTHESIS    &kp LS(RPAR)  &kp N1             &kp N2  &kp N3  &kp N0
+&trans  &mt LS(LA(LC(LEFT_META))) PIPE  &kp LS(DLLR)       &kp LS(PRCNT)    &kp LS(CARET)        &kp LS(LBRC)                               &kp LS(RBRC)  &kp N4             &kp N5  &kp N6  &kp EQUAL  &trans
+                                                           &trans           &mt LEFT_SHIFT BSPC  &mt GLOBE GLOBE                            &kp RET       &mt RIGHT_ALT TAB  &trans
             >;
         };
 
