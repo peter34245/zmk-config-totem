@@ -141,6 +141,16 @@
             bindings = <&kp LS(LA(LC(LG(A))))>;
             key-positions = <10 21>;
         };
+
+        esc2 {
+            bindings = <&kp ESC>;
+            key-positions = <2 12>;
+        };
+
+        tab {
+            bindings = <&kp TAB>;
+            key-positions = <3 13>;
+        };
     };
 
     behaviors {
