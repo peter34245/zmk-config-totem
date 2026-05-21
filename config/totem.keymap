@@ -113,7 +113,7 @@
         };
 
         enter {
-            bindings = <&kp TAB>;
+            bindings = <&kp ENTER>;
             key-positions = <33 34>;
         };
 
@@ -133,7 +133,7 @@
         };
 
         esc {
-            bindings = <&kp ESC>;
+            bindings = <&kp LG(TAB)>;
             key-positions = <12 13>;
         };
 
