@@ -134,7 +134,7 @@
 
         esc {
             bindings = <&kp LG(TAB)>;
-            key-positions = <12 13>;
+            key-positions = <13 14>;
         };
 
         browser {
