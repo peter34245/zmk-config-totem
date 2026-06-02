@@ -149,7 +149,12 @@
 
         enterr {
             bindings = <&kp ENTER>;
-            key-positions = <32 33>;
+            key-positions = <33 34>;
+        };
+
+        mst {
+            bindings = <&kp LS(LG(T))>;
+            key-positions = <12 3>;
         };
     };
 
