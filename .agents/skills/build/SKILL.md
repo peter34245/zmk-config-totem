@@ -46,6 +46,11 @@ waiting for hardware.
 
 ## Safety
 
+- The editable user keymap is `config/totem.keymap`.
+- Do not edit `config/boards/shields/totem/totem.keymap` for normal layout
+  changes; it is a local shield reference/default keymap.
+- Before building after keymap edits, preserve the TOTEM shape: every layer in
+  `config/totem.keymap` should keep exactly 38 bindings.
 - Do not use Docker or Colima for this project unless the user explicitly asks.
 - Do not create `firmware.zip`; the desired outputs are the two `.uf2` files.
 - Do not erase or format volumes. Only copy the matching UF2 file to the newly

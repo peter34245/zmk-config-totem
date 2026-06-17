@@ -1,30 +1,90 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/docs/images/TOTEM_logo_dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/docs/images/TOTEM_logo_bright.svg">
-  <img alt="TOTEM logo font" src="/docs/images/TOTEM_logo_bright.svg">
-</picture>
+# ZMK Config For The TOTEM Split Keyboard
 
-# ZMK CONFIG FOR THE TOTEM SPLIT KEYBOARD
+This is the personal ZMK config for a 38-key
+[TOTEM](https://github.com/GEIGEIGEIST/totem) split keyboard using
+`seeeduino_xiao_ble` controllers.
 
-[Here](https://github.com/GEIGEIGEIST/totem) you can find the hardware files and build guide.\
-[Here](https://github.com/GEIGEIGEIST/qmk-config-totem) you can find the QMK config for the TOTEM.
+The primary editable keymap is:
 
-TOTEM is a 38 key column-staggered split keyboard running [ZMK](https://zmk.dev/) or [QMK](https://docs.qmk.fm/). It's meant to be used with a SEEED XIAO BLE or RP2040.
+```text
+config/totem.keymap
+```
 
+Do not edit `config/boards/shields/totem/totem.keymap` for daily layout
+changes. That file belongs to the local shield definition and is kept only as a
+reference/default keymap.
 
-![TOTEM layout](/docs/images/TOTEM_layout.svg)
+## Editing The Keymap
 
+Use one of these workflows:
 
+- Edit `config/totem.keymap` directly in an IDE.
+- Ask an AI agent to edit `config/totem.keymap`.
+- Use [Keymap Editor](https://github.com/nickcoutsos/keymap-editor) with the
+  file system source and choose `config/totem.keymap`.
 
-## HOW TO USE
+After editing, build through GitHub Actions. Local Docker or Colima builds are
+not the default workflow for this repo.
 
-- fork this repo
-- `git clone` your repo, to create a local copy on your PC (you can use the [command line](https://www.atlassian.com/git/tutorials) or [github desktop](https://desktop.github.com/))
-- adjust the totem.keymap file (find all the keycodes on [the zmk docs pages](https://zmk.dev/docs/codes/))
-- `git push` your repo to your fork
-- on the GitHub page of your fork navigate to "Actions"
-- scroll down and unzip the `firmware.zip` archive that contains the latest firmware
-- connect the left half of the TOTEM to your PC, press reset twice
-- the keyboard should now appear as a mass storage device
-- drag'n'drop the `totem_left-seeeduino_xiao_ble-zmk.uf2` file from the archive onto the storage device
-- repeat this process with the right half and the `totem_right-seeeduino_xiao_ble-zmk.uf2` file.
+## Build And Install
+
+Default local command:
+
+```sh
+./scripts/build-and-install.sh "Update keymap"
+```
+
+This commits firmware source edits under `config`, `build.yaml`, and
+`.github/workflows`, pushes the current branch, waits for GitHub Actions,
+downloads the firmware artifact into `firmware/`, then installs the left half
+first and the right half second.
+
+Expected downloaded files:
+
+```text
+firmware/totem_left-seeeduino_xiao_ble-zmk.uf2
+firmware/totem_right-seeeduino_xiao_ble-zmk.uf2
+```
+
+The helper downloads extracted `.uf2` files. It does not create or require a
+`firmware.zip` file.
+
+## Build Only
+
+Use this when you want to build and download firmware without flashing:
+
+```sh
+./scripts/build-firmware-github.sh "Update keymap"
+```
+
+## Install Existing Firmware Only
+
+Use this when `firmware/` already contains current left and right UF2 files:
+
+```sh
+./scripts/install-uf2-macos.py --firmware-dir firmware
+```
+
+Preflight the installer without waiting for keyboard hardware:
+
+```sh
+./scripts/install-uf2-macos.py --firmware-dir firmware --preflight
+```
+
+## AI Agent Notes
+
+Agents should follow [AGENTS.md](AGENTS.md) and the repo-local build skill in
+`.agents/skills/build`. The short rule is:
+
+- Edit `config/totem.keymap`.
+- Keep every layer at 38 bindings.
+- Build with GitHub Actions via the project scripts.
+- Download only `.uf2` files into `firmware/`.
+- Flash left half first, then right half.
+
+## Requirements
+
+- GitHub CLI: `gh`
+- Authenticated GitHub account with access to this repository
+- Network access
+- macOS for the install script

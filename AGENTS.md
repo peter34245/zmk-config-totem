@@ -27,3 +27,10 @@ Primary user-edited keymap file:
 ```text
 config/totem.keymap
 ```
+
+Do not edit `config/boards/shields/totem/totem.keymap` for normal layout
+changes. It belongs to the local shield definition and is kept only as a
+reference/default keymap.
+
+When editing `config/totem.keymap`, preserve the TOTEM matrix shape: every
+layer should keep exactly 38 bindings.
