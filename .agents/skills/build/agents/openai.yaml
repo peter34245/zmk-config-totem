@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build TOTEM Firmware"
+  short_description: "Build and flash TOTEM firmware"
+  default_prompt: "Use $build to build and install the TOTEM firmware."

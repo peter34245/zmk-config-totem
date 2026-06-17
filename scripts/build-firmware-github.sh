@@ -6,6 +6,7 @@ WORKFLOW="${GITHUB_WORKFLOW_FILE:-build.yml}"
 ARTIFACT="${GITHUB_FIRMWARE_ARTIFACT:-firmware}"
 DOWNLOAD_DIR="${GITHUB_FIRMWARE_DIR:-${ROOT}/firmware}"
 COMMIT_MESSAGE="${1:-}"
+DEFAULT_COMMIT_PATHS=(config build.yaml .github/workflows)
 
 cd "${ROOT}"
 
@@ -30,10 +31,23 @@ if [ -z "${repo}" ]; then
   exit 1
 fi
 
-if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+if [ -n "${GITHUB_FIRMWARE_COMMIT_PATHS:-}" ]; then
+  read -r -a commit_paths <<< "${GITHUB_FIRMWARE_COMMIT_PATHS}"
+else
+  commit_paths=("${DEFAULT_COMMIT_PATHS[@]}")
+fi
+
+firmware_changes=false
+if ! git diff --quiet -- "${commit_paths[@]}" ||
+  ! git diff --cached --quiet -- "${commit_paths[@]}" ||
+  [ -n "$(git ls-files --others --exclude-standard -- "${commit_paths[@]}")" ]; then
+  firmware_changes=true
+fi
+
+if [ "${firmware_changes}" = true ]; then
   if [ -z "${COMMIT_MESSAGE}" ]; then
     cat >&2 <<'EOF'
-There are uncommitted changes.
+There are uncommitted firmware source changes.
 
 Commit them first, or pass a commit message:
 
@@ -42,32 +56,37 @@ EOF
     exit 1
   fi
 
-  git add -A
-  git commit -m "${COMMIT_MESSAGE}"
+  git add -- "${commit_paths[@]}"
+  git commit -m "${COMMIT_MESSAGE}" -- "${commit_paths[@]}"
 fi
 
 sha="$(git rev-parse HEAD)"
 
 echo "Pushing ${branch} to ${repo}..."
-push_output="$(git push -u origin "${branch}" 2>&1 || true)"
+if ! push_output="$(git push -u origin "${branch}" 2>&1)"; then
+  printf '%s\n' "${push_output}"
+  exit 1
+fi
 printf '%s\n' "${push_output}"
 
 run_id=""
-for _ in $(seq 1 20); do
-  run_id="$(gh run list \
-    --repo "${repo}" \
-    --workflow "${WORKFLOW}" \
-    --commit "${sha}" \
-    --limit 1 \
-    --json databaseId \
-    --jq '.[0].databaseId // ""')"
+if [[ "${push_output}" != *"Everything up-to-date"* ]]; then
+  for _ in $(seq 1 20); do
+    run_id="$(gh run list \
+      --repo "${repo}" \
+      --workflow "${WORKFLOW}" \
+      --commit "${sha}" \
+      --limit 1 \
+      --json databaseId \
+      --jq '.[0].databaseId // ""')"
 
-  if [ -n "${run_id}" ]; then
-    break
-  fi
+    if [ -n "${run_id}" ]; then
+      break
+    fi
 
-  sleep 3
-done
+    sleep 3
+  done
+fi
 
 if [ -z "${run_id}" ]; then
   echo "No push-triggered run found for ${sha}; triggering workflow_dispatch on ${branch}..."

@@ -35,16 +35,30 @@ From this repo:
 If there are no new commits to push, the script triggers the workflow manually
 for the current branch.
 
-If you have uncommitted edits, pass a commit message. The script commits all
-non-ignored changes, pushes the current branch, waits for the matching Actions
+If you have uncommitted firmware source edits, pass a commit message. By
+default the script commits changes under `config`, `build.yaml`, and
+`.github/workflows`, pushes the current branch, waits for the matching Actions
 run, and downloads the `firmware` artifact into `firmware/`.
 
 ```sh
 ./scripts/build-firmware-github.sh "Update keymap"
 ```
 
+## Build And Install
+
+To build with GitHub Actions and then flash the left and right halves:
+
+```sh
+./scripts/build-and-install.sh "Update keymap"
+```
+
+The installer waits for each keyboard half to appear as a mounted UF2 bootloader
+volume under `/Volumes`, copies the matching `.uf2` file, syncs, and ejects the
+volume if it has not already disappeared.
+
 ## Requirements
 
 - GitHub CLI: `gh`
 - Authenticated GitHub account with access to this repo
 - Network access
+- macOS for the install script
