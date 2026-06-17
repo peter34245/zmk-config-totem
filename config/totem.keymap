@@ -193,10 +193,10 @@
 
         sym {
             bindings = <
-        &kp BSLH                        &kp LS(AMPS)       &kp LS(STAR)     &kp LS(TILDE)        &kp LBKT                                   &kp RBKT      &kp N7              &kp N8                &kp N9            &kp MINUS
-        &mt LEFT_CONTROL GRAVE          &mt LEFT_ALT EXCL  &mt LEFT_GUI AT  &mt LEFT_SHIFT HASH  &mt LA(LC(LEFT_SHIFT)) LEFT_PARENTHESIS    &kp LS(RPAR)  &mt RIGHT_SHIFT N1  &mt RIGHT_COMMAND N2  &mt RIGHT_ALT N3  &mt RIGHT_CONTROL N0
-&trans  &mt LS(LA(LC(LEFT_META))) PIPE  &kp LS(DLLR)       &kp LS(PRCNT)    &kp LS(CARET)        &kp LS(LBRC)                               &kp LS(RBRC)  &kp N4              &kp N5                &kp N6            &kp EQUAL             &trans
-                                                           &trans           &kp LEFT_SHIFT       &mt GLOBE GLOBE                            &kp RET       &mt RIGHT_ALT TAB   &trans
+        &kp BSLH                        &kp LS(AMPS)       &kp LS(STAR)     &kp LS(TILDE)        &kp LBKT                                   &kp RBKT                                      &kp N7              &kp N8                &kp N9            &kp MINUS
+        &mt LEFT_CONTROL GRAVE          &mt LEFT_ALT EXCL  &mt LEFT_GUI AT  &mt LEFT_SHIFT HASH  &mt LA(LC(LEFT_SHIFT)) LEFT_PARENTHESIS    &mt RA(RC(RIGHT_SHIFT)) KP_RIGHT_PARENTHESIS  &mt RIGHT_SHIFT N1  &mt RIGHT_COMMAND N2  &mt RIGHT_ALT N3  &mt RIGHT_CONTROL N0
+&trans  &mt LS(LA(LC(LEFT_META))) PIPE  &kp LS(DLLR)       &kp LS(PRCNT)    &kp LS(CARET)        &kp LS(LBRC)                               &kp LS(RBRC)                                  &kp N4              &kp N5                &kp N6            &kp EQUAL             &trans
+                                                           &trans           &kp LEFT_SHIFT       &mt GLOBE GLOBE                            &kp RET                                       &mt RIGHT_ALT TAB   &trans
             >;
         };
 
