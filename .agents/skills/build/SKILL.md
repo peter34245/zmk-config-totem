@@ -7,6 +7,7 @@ description: Project-local TOTEM ZMK workflow. Use when the user types /build, i
 
 This is a repo-scoped skill for `/Users/ozz/Documents/GitHub/zmk-config-totem`.
 Do not use or create global Codex skills for this workflow.
+Use `AGENTS.md` for project-level routing rules.
 
 ## Build Only
 
@@ -47,8 +48,8 @@ waiting for hardware.
 ## Safety
 
 - The editable user keymap is `config/totem.keymap`.
-- Do not edit `config/boards/shields/totem/totem.keymap` for normal layout
-  changes; it is a local shield reference/default keymap.
+- Do not recreate `config/boards/shields/totem/totem.keymap`; this project uses
+  the top-level user keymap.
 - Before building after keymap edits, preserve the TOTEM shape: every layer in
   `config/totem.keymap` should keep exactly 38 bindings.
 - Do not use Docker or Colima for this project unless the user explicitly asks.

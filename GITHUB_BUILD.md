@@ -1,64 +1,73 @@
-# GitHub Actions Firmware Builds
+# GitHub Actions Build Notes For Agents
 
-This project can build firmware through GitHub Actions without running Docker,
-Colima, or a local ZMK toolchain.
+Use this file as supporting detail for the project scripts. For task routing,
+follow `AGENTS.md` first. For `/build`, `$build`, build, download, and install
+requests, use the repo-local `build` skill in `.agents/skills/build`.
 
-The workflow in `.github/workflows/build.yml` builds the entries in `build.yaml`
-and publishes a GitHub Actions artifact named `firmware`.
+## Workflow
 
-## Download Behavior
-
-GitHub stores the artifact as a ZIP internally, but `gh run download` extracts it
-for you. This project's helper downloads the artifact contents into:
+`.github/workflows/build.yml` uses ZMK's reusable user-config build workflow.
+`build.yaml` defines the two firmware targets:
 
 ```text
-firmware/
+seeeduino_xiao_ble + totem_left
+seeeduino_xiao_ble + totem_right
 ```
 
-Expected files:
+The expected GitHub Actions artifact is named:
+
+```text
+firmware
+```
+
+## Helper Behavior
+
+Run this helper for build/download-only requests:
+
+```sh
+./scripts/build-firmware-github.sh "Update keymap"
+```
+
+The helper:
+
+- Detects the current branch and `origin` GitHub repository.
+- Commits firmware source edits under `config`, `build.yaml`, and
+  `.github/workflows` when a commit message is provided.
+- Pushes the branch.
+- Waits for the matching GitHub Actions run.
+- Downloads the extracted artifact contents into `firmware/`.
+
+Expected local files after download:
 
 ```text
 firmware/totem_left-seeeduino_xiao_ble-zmk.uf2
 firmware/totem_right-seeeduino_xiao_ble-zmk.uf2
 ```
 
-The helper does not create `firmware.zip`.
-
-## Build Current Branch And Download UF2 Files
-
-From this repo:
-
-```sh
-./scripts/build-firmware-github.sh
-```
-
-If there are no new commits to push, the script triggers the workflow manually
-for the current branch.
-
-If you have uncommitted firmware source edits, pass a commit message. By
-default the script commits changes under `config`, `build.yaml`, and
-`.github/workflows`, pushes the current branch, waits for the matching Actions
-run, and downloads the `firmware` artifact into `firmware/`.
-
-```sh
-./scripts/build-firmware-github.sh "Update keymap"
-```
+Do not create `firmware.zip`. GitHub stores artifacts as ZIP internally, but
+`gh run download` extracts them for this workflow.
 
 ## Build And Install
 
-To build with GitHub Actions and then flash the left and right halves:
+For build plus flashing:
 
 ```sh
 ./scripts/build-and-install.sh "Update keymap"
 ```
 
-The installer waits for each keyboard half to appear as a mounted UF2 bootloader
-volume under `/Volumes`, copies the matching `.uf2` file, syncs, and ejects the
-volume if it has not already disappeared.
+This runs the GitHub build helper, then flashes with:
 
-## Requirements
+```sh
+./scripts/install-uf2-macos.py --firmware-dir firmware
+```
 
-- GitHub CLI: `gh`
-- Authenticated GitHub account with access to this repo
-- Network access
-- macOS for the install script
+The installer is macOS-specific. It watches `/Volumes`, prompts for each half,
+copies the matching UF2 to the bootloader volume, syncs, and tries to eject.
+Install order is always left half first, then right half.
+
+## Preconditions
+
+- `gh` is installed and authenticated.
+- The current branch can be pushed to `origin`.
+- Network access is available.
+- macOS is required for the install script.

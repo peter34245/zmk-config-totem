@@ -1,36 +1,50 @@
 # Project Instructions
 
-This repository is the user's TOTEM ZMK keymap project.
+This repository is the user's personal TOTEM ZMK keymap project. Treat these
+files as agent-facing workflow instructions, not user documentation.
 
-When the user types `/build`, invokes `$build`, or asks to build/install
-firmware:
+## Source Of Truth
+
+- Edit only `config/totem.keymap` for layout changes.
+- Keep every keymap layer at exactly 38 bindings.
+- Do not recreate `config/boards/shields/totem/totem.keymap`; this project uses
+  the top-level user keymap instead.
+- Leave `firmware/` outputs untracked.
+
+## Build Skill
+
+When the user types `/build`, invokes `$build`, asks to build firmware, asks to
+download UF2 artifacts, or asks to install/flash the keyboard halves:
 
 1. Use the repo-local `build` skill from `.agents/skills/build`.
-2. Prefer project scripts over reimplementing the workflow.
-3. Build firmware with GitHub Actions, not local Docker/Colima, unless the user
-   explicitly asks for local builds.
-4. Download only `.uf2` files into `firmware/`; do not create `firmware.zip`.
-5. Install left half first, then right half, using `scripts/install-uf2-macos.py`.
+2. Follow the skill's `SKILL.md` for the full workflow.
+3. Prefer project scripts over reimplementing build, download, or install
+   steps.
 
-Default command for `/build`:
+Default command for build and install:
 
 ```sh
 ./scripts/build-and-install.sh "Update keymap"
 ```
 
-Use `./scripts/build-firmware-github.sh "Update keymap"` when the user asks
-for build/download only. Use `./scripts/install-uf2-macos.py --firmware-dir
-firmware` when the user already has current UF2 files and only wants to flash.
+Build/download only:
 
-Primary user-edited keymap file:
-
-```text
-config/totem.keymap
+```sh
+./scripts/build-firmware-github.sh "Update keymap"
 ```
 
-Do not edit `config/boards/shields/totem/totem.keymap` for normal layout
-changes. It belongs to the local shield definition and is kept only as a
-reference/default keymap.
+Install existing firmware only:
 
-When editing `config/totem.keymap`, preserve the TOTEM matrix shape: every
-layer should keep exactly 38 bindings.
+```sh
+./scripts/install-uf2-macos.py --firmware-dir firmware
+```
+
+## Firmware Workflow
+
+- Build firmware with GitHub Actions, not local Docker or Colima, unless the
+  user explicitly asks for local builds.
+- Download only extracted `.uf2` files into `firmware/`; do not create
+  `firmware.zip`.
+- Install left half first, then right half.
+- Use `GITHUB_BUILD.md` only as supporting detail for the GitHub Actions helper
+  scripts; `AGENTS.md` and the `build` skill are the routing source of truth.
