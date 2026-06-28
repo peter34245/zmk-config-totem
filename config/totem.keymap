@@ -147,14 +147,19 @@
             key-positions = <3 13>;
         };
 
-        enterr {
-            bindings = <&mt LS(LA(LC(LEFT_META))) ENTER>;
+        oneshot_hyper {
+            bindings = <&sl 6>;
             key-positions = <33 34>;
         };
 
         mst {
             bindings = <&kp LS(LG(T))>;
             key-positions = <12 3>;
+        };
+
+        raycast {
+            bindings = <&kp F13>;
+            key-positions = <4 14>;
         };
     };
 
@@ -226,6 +231,15 @@
                                   &mt LCTRL A  &mt LALT S  &mt LGUI D          &mt LSHFT F  &mt LA(LC(LEFT_SHIFT)) G    &mt RA(RC(RIGHT_SHIFT)) H  &mt RSHFT J  &mt RGUI K         &mt RALT L  &mt RCTRL SEMI
 &mt LS(LA(LC(LEFT_COMMAND))) ESC  &kp Z        &kp X       &kp C               &kp V        &kp B                       &kp N                      &kp M        &kp COMMA          &kp DOT     &kp FSLH        &mt RS(RA(RC(RIGHT_COMMAND))) SQT
                                                            &mt LEFT_SHIFT TAB  &lt 4 BSPC   &lt 1 SPACE                 &lt 1 SPACE                &lt 5 RET    &mt RIGHT_ALT ESC
+            >;
+        };
+
+        hyper {
+            bindings = <
+        &kp LS(LA(LC(LG(Q))))  &kp LS(LA(LC(LG(W))))  &kp LS(LA(LC(LG(D))))   &kp LS(LA(LC(LG(T))))     &kp LS(LA(LC(LG(F))))        &kp LS(LA(LC(LG(Y))))    &kp LS(LA(LC(LG(U))))    &kp LS(LA(LC(LG(K))))      &kp LS(LA(LC(LG(L))))    &kp LS(LA(LC(LG(MINUS))))
+        &kp LS(LA(LC(LG(A))))  &kp LS(LA(LC(LG(S))))  &kp LS(LA(LC(LG(E))))   &kp LS(LA(LC(LG(R))))     &kp LS(LA(LC(LG(G))))        &kp LS(LA(LC(LG(H))))    &kp LS(LA(LC(LG(N))))    &kp LS(LA(LC(LG(I))))      &kp LS(LA(LC(LG(O))))    &kp LS(LA(LC(LG(P))))
+&trans  &kp LS(LA(LC(LG(X))))  &kp LS(LA(LC(LG(Z))))  &kp LS(LA(LC(LG(C))))   &kp LS(LA(LC(LG(V))))     &kp LS(LA(LC(LG(B))))        &kp LS(LA(LC(LG(J))))    &kp LS(LA(LC(LG(M))))    &kp LS(LA(LC(LG(COMMA))))  &kp LS(LA(LC(LG(DOT))))  &kp LS(LA(LC(LG(FSLH))))   &trans
+                                            &trans     &kp LS(LA(LC(LG(BSPC))))  &kp LS(LA(LC(LG(SPACE))))    &kp LS(LA(LC(LG(RET))))  &kp LS(LA(LC(LG(TAB))))  &trans
             >;
         };
     };
