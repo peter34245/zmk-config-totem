@@ -33,6 +33,9 @@ This builds through GitHub Actions, downloads UF2 files, then installs left half
 first and right half second. The macOS installer watches `/Volumes`, prompts the
 user to connect each half and double-click reset, copies the matching `.uf2` to
 the bootloader volume, syncs, tries to eject, and prints/notifies completion.
+The `XIAO-SENSE` bootloader volume can auto-disconnect immediately after a UF2
+upload; if this happens during or right after the copy, treat it as expected and
+continue with the next half instead of assuming the flash failed.
 
 ## Install Existing Firmware Only
 
@@ -56,4 +59,7 @@ waiting for hardware.
 - Do not create `firmware.zip`; the desired outputs are the two `.uf2` files.
 - Do not erase or format volumes. Only copy the matching UF2 file to the newly
   mounted bootloader volume and eject it.
+- If `XIAO-SENSE` disappears during or immediately after copying a UF2 file,
+  assume the board accepted the upload and rebooted unless there is clear
+  evidence that the copy never started.
 - Wait for explicit user action via the script prompts before each half.
