@@ -189,15 +189,21 @@
             layers = <0 1 2 7 8>;
         };
 
-        from-asergo-to-gaming {
+        gaming_v1_layer {
             bindings = <&to 3>;
             key-positions = <23 24>;
             layers = <0>;
         };
 
-        from-gaming-to-asergo {
+        asergo_layer {
             bindings = <&to 0>;
             key-positions = <22 23>;
+            layers = <3 4 5>;
+        };
+
+        gaming_v2_layer {
+            bindings = <&to 9>;
+            key-positions = <25 24>;
             layers = <3 4 5>;
         };
     };
@@ -255,7 +261,7 @@
          * Normal combos are scoped away from layers 3/4/5 to avoid game latency.
          */
 
-        gaming_layer_3 {
+        gaming_v1_layer_3 {
             bindings = <
         &kp LEFT_ALT  &kp Q  &kp X   &kp E  &kp R        &trans  &trans  &trans  &trans  &trans
         &kp LCTRL     &kp A  &kp W   &kp D  &kp F        &trans  &trans  &trans  &trans  &trans
@@ -310,7 +316,7 @@
             >;
         };
 
-        layer_9 {
+        gaming_v2_layer_9 {
             bindings = <
         &kp TAB    &kp N1  &kp N2  &kp N3  &kp N4       &trans  &trans  &trans  &trans  &trans
         &kp ESC    &kp A   &kp W   &kp D   &kp R        &trans  &trans  &trans  &trans  &trans
