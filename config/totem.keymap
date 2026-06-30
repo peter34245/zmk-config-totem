@@ -254,16 +254,17 @@
          * is a held hotbar/util layer; layer 5 is a one-shot function layer.
          * Normal combos are scoped away from layers 3/4/5 to avoid game latency.
          */
+
         gaming_layer_3 {
             bindings = <
-        &kp LEFT_ALT  &kp Q  &kp W   &kp E  &kp R        &trans  &trans  &trans  &trans  &trans
-        &kp LCTRL     &kp A  &kp S   &kp D  &kp F        &trans  &trans  &trans  &trans  &trans
-&trans  &kp LSHFT     &kp Z  &kp X   &kp C  &kp V        &trans  &trans  &trans  &trans  &trans  &trans
+        &kp LEFT_ALT  &kp Q  &kp X   &kp E  &kp R        &trans  &trans  &trans  &trans  &trans
+        &kp LCTRL     &kp A  &kp W   &kp D  &kp F        &trans  &trans  &trans  &trans  &trans
+&trans  &kp LSHFT     &kp Z  &kp S   &kp C  &kp V        &trans  &trans  &trans  &trans  &trans  &trans
                              &trans  &mo 4  &kp SPACE    &trans  &trans  &trans
             >;
         };
 
-   gaming_plus_layer_4 {
+        gaming_plus_layer_4 {
             bindings = <
         &kp BACKSPACE  &trans  &kp ESC  &kp TAB  &kp T     &trans  &trans  &trans  &trans  &trans
         &sl 5          &kp N1  &kp N2   &kp N3   &kp G     &trans  &trans  &trans  &trans  &trans
@@ -283,10 +284,10 @@
 
         hyper_oneshot_layer_6 {
             bindings = <
-        &kp LS(LA(LC(LG(Q))))  &kp LS(LA(LC(LG(W))))  &kp LS(LA(LC(LG(D))))   &kp LS(LA(LC(LG(T))))     &kp LS(LA(LC(LG(F))))        &kp LS(LA(LC(LG(Y))))    &kp LS(LA(LC(LG(U))))    &kp LS(LA(LC(LG(K))))      &kp LS(LA(LC(LG(L))))    &kp LS(LA(LC(LG(MINUS))))
-        &kp LS(LA(LC(LG(A))))  &kp LS(LA(LC(LG(S))))  &kp LS(LA(LC(LG(E))))   &kp LS(LA(LC(LG(R))))     &kp LS(LA(LC(LG(G))))        &kp LS(LA(LC(LG(H))))    &kp LS(LA(LC(LG(N))))    &kp LS(LA(LC(LG(I))))      &kp LS(LA(LC(LG(O))))    &kp LS(LA(LC(LG(P))))
-&trans  &kp LS(LA(LC(LG(X))))  &kp LS(LA(LC(LG(Z))))  &kp LS(LA(LC(LG(C))))   &kp LS(LA(LC(LG(V))))     &kp LS(LA(LC(LG(B))))        &kp LS(LA(LC(LG(J))))    &kp LS(LA(LC(LG(M))))    &kp LS(LA(LC(LG(COMMA))))  &kp LS(LA(LC(LG(DOT))))  &kp LS(LA(LC(LG(FSLH))))   &trans
-                                            &trans     &kp LS(LA(LC(LG(BSPC))))  &kp LS(LA(LC(LG(SPACE))))    &kp LS(LA(LC(LG(RET))))  &kp LS(LA(LC(LG(TAB))))  &trans
+        &kp LS(LA(LC(LG(Q))))  &kp LS(LA(LC(LG(W))))  &kp LS(LA(LC(LG(D))))  &kp LS(LA(LC(LG(T))))     &kp LS(LA(LC(LG(F))))        &kp LS(LA(LC(LG(Y))))    &kp LS(LA(LC(LG(U))))    &kp LS(LA(LC(LG(K))))      &kp LS(LA(LC(LG(L))))    &kp LS(LA(LC(LG(MINUS))))
+        &kp LS(LA(LC(LG(A))))  &kp LS(LA(LC(LG(S))))  &kp LS(LA(LC(LG(E))))  &kp LS(LA(LC(LG(R))))     &kp LS(LA(LC(LG(G))))        &kp LS(LA(LC(LG(H))))    &kp LS(LA(LC(LG(N))))    &kp LS(LA(LC(LG(I))))      &kp LS(LA(LC(LG(O))))    &kp LS(LA(LC(LG(P))))
+&trans  &kp LS(LA(LC(LG(X))))  &kp LS(LA(LC(LG(Z))))  &kp LS(LA(LC(LG(C))))  &kp LS(LA(LC(LG(V))))     &kp LS(LA(LC(LG(B))))        &kp LS(LA(LC(LG(J))))    &kp LS(LA(LC(LG(M))))    &kp LS(LA(LC(LG(COMMA))))  &kp LS(LA(LC(LG(DOT))))  &kp LS(LA(LC(LG(FSLH))))   &trans
+                                                      &trans                 &kp LS(LA(LC(LG(BSPC))))  &kp LS(LA(LC(LG(SPACE))))    &kp LS(LA(LC(LG(RET))))  &kp LS(LA(LC(LG(TAB))))  &trans
             >;
         };
 
@@ -306,6 +307,15 @@
         &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LC(LA(LSHFT))    &trans  &kp F1  &kp F2  &kp F3  &kp F10
 &trans  &trans     &trans    &trans    &trans     &trans               &trans  &kp F4  &kp F5  &kp F6  &kp F11  &trans
                              &trans    &trans     &trans               &trans  &trans  &trans
+            >;
+        };
+
+        layer_9 {
+            bindings = <
+        &kp TAB    &kp N1  &kp N2  &kp N3  &kp N4       &trans  &trans  &trans  &trans  &trans
+        &kp ESC    &kp A   &kp W   &kp D   &kp R        &trans  &trans  &trans  &trans  &trans
+&trans  &kp LSHFT  &kp Z   &kp S   &kp C   &kp V        &trans  &trans  &trans  &trans  &trans  &trans
+                           &trans  &mo 4   &kp SPACE    &trans  &trans  &trans
             >;
         };
     };
