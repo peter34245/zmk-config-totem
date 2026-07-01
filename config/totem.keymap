@@ -177,6 +177,13 @@
             layers = <0 1 2 7 8>;
         };
 
+        bt_layer {
+            timeout-ms = <100>;
+            bindings = <&sl 7>;
+            key-positions = <29 30>;
+            layers = <0 1 2 8>;
+        };
+
         mst {
             bindings = <&kp LS(LG(T))>;
             key-positions = <12 3>;
@@ -297,13 +304,18 @@
             >;
         };
 
-        bt_unused_layer_7 {
+        /*
+         * Right-hand one-shot Bluetooth controls. Profiles 0/1/2 are intended
+         * for MacBook, Mac Mini, and Pixel 9 Pro respectively.
+         */
+
+        bt_layer_7 {
             label = "BT";
             bindings = <
-        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans
-        &sys_reset    &bootloader   &bt BT_CLR    &out OUT_TOG  &trans          &trans  &trans  &trans  &trans  &trans
-&trans  &trans        &bt BT_PRV    &bt BT_NXT    &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-                                    &trans        &trans        &trans          &trans  &trans  &trans
+        &trans  &trans  &trans  &trans  &trans    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+        &trans  &trans  &trans  &trans  &trans    &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &out OUT_BLE  &out OUT_USB
+&trans  &trans  &trans  &trans  &trans  &trans    &bt BT_PRV     &bt BT_NXT     &bt BT_CLR    &out OUT_TOG  &trans        &trans
+                        &trans  &trans  &trans    &trans         &trans         &trans
             >;
         };
 
